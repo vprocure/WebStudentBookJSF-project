@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+<head>
+  <title><ui:insert name="title">Default title</ui:insert></title>
+</head>
+
+<h:body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+	<ui:insert name = "content">
+		<h:form>
+			<h2>Fill in the form to add a student :</h2>
+			<tr>
+				<td>Last Name :	 </td>
+					<h:inputText value = "#{student.last_Name}" label = "Last Name" title = "last name" id="last_Name" required = "true" requiredMessage="fill in the last name please"/>
+					<h:message for ="last_Name" style="color : red"></h:message>
+			</tr>
+			<br/><br/>		
+			<tr>
+				<td>First Name :	 </td>
+				<td>
+					<h:inputText value = "#{student.first_Name}" label = "First Name" title = "first name" id="first_Name" required = "true" requiredMessage="fill in the first name please"/>
+				</td>
+			</tr>
+			<br/><br/>		
+			<tr>
+				<td>Email :	 </td>
+				<h:inputText value = "#{student.email}" label = "Email" title = "email" id="email" required = "true" requiredMessage="fill in the last name please">
+					<f:validateRegex pattern = "^[a-zA-Z[0-9]]+(\\.[a-zA-Z[0-9]])*@[a-zA-Z[0-9]]+(\\.[az-A-Z[0-9]])*(\\.[a-zA-Z[0-9]]{2,})$"/>
+				</h:inputText>
+			</tr>
+		</h:form>
+		<br/><br/>		
+		<h:commandButton action = "#{studentManager.outcome}" actionListener="#{studentManager.attrListener}" >
+		    <f:attribute name="student" value="#{student}" />
+		    <f:attribute name = "value" value="Submit" />
+		</h:commandButton>
+	</ui:insert>
+</h:body>
+	
+
+
+</html>

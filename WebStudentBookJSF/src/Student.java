@@ -1,3 +1,6 @@
+import javax.faces.bean.ManagedBean;
+
+@ManagedBean(name="student")
 public class Student {
 
 	private int id;
@@ -28,7 +31,7 @@ public class Student {
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", first_Name=" + first_Name + ", last_Name=" + last_Name + ", email=" + email
-				+ "]";
+				+ "]\n";
 	}
 	
 	public int getId() {
