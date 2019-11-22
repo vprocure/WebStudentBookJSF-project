@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      
+<h:body>
+<ui:debug hotkey="x" rendered="#{initParam['javax.faces.FACELETS_DEVELOPMENT']}"/>
+	<ui:insert name = "content">
+		<h:form>
+			<h2>Edit a student :</h2>
+			<br/>
+			<h:outputText value="Student ID: "/>
+			<h:inputText value = "#{studentManager.disp_stu.id}" binding="#{input1}"/>
+			<br/>
+			<br/>
+			<h:outputText value="Student First Name: "/>
+			<h:inputText value = "#{studentManager.disp_stu.first_Name}" binding="#{input2}" />
+			<br/>
+			<br/>
+			<h:outputText value="Student Last Name: "/>
+			<h:inputText value = "#{studentManager.disp_stu.last_Name}" binding="#{input3}" />	
+			<br/>
+			<br/>
+			<h:outputText value="Student Email: "/>
+			<h:inputText value = "#{studentManager.disp_stu.email}" binding="#{input4}"/>	
+			<br/>
+			<br/>					
+			<h:commandButton value = "Edit" action = "#{studentManager.updateStudent()}"></h:commandButton>
+			<h:commandButton value = "Back" action = "List-students"></h:commandButton>
+		</h:form>	
+	</ui:insert>
+</h:body>
+	
+
+
+</html>

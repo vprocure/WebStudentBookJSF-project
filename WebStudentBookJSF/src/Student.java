@@ -1,7 +1,11 @@
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean(name="student")
-public class Student {
+@RequestScoped
+public class Student implements Serializable{
 
 	private int id;
 	private String first_Name;

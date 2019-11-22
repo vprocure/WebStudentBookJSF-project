@@ -74,26 +74,54 @@ public class StudentDBUtil {
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		
-		try {
-			myConn = dataSource.getConnection();
-			String sql = "insert into student (firstname,lastname,email) values (?,?,?)";
-			myStmt = myConn.prepareStatement(sql);
-			String fs = student.getFirst_Name();
-			String ls = student.getLast_Name();
-			String em = student.getEmail();
-			myStmt.setString(1, fs);
-			myStmt.setString(2, ls);
-			myStmt.setString(3, em);
-			myStmt.execute();
+		if(student.getId()==0)
+		{
+			try {
+				myConn = dataSource.getConnection();
+				String sql = "insert into student (firstname,lastname,email) values (?,?,?)";
+				myStmt = myConn.prepareStatement(sql);
+				String fs = student.getFirst_Name();
+				String ls = student.getLast_Name();
+				String em = student.getEmail();
+				myStmt.setString(1, fs);
+				myStmt.setString(2, ls);
+				myStmt.setString(3, em);
+				myStmt.execute();
+			}
+			
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			finally {
+				close(myConn,myStmt,myRs);
+			}
+		}
+		else {
+			try {
+				myConn = dataSource.getConnection();
+				String sql = "insert into student (id,firstname,lastname,email) values (?,?,?,?)";
+				myStmt = myConn.prepareStatement(sql);
+				String fs = student.getFirst_Name();
+				String ls = student.getLast_Name();
+				String em = student.getEmail();
+				int id = student.getId();
+				myStmt.setInt(1, id);
+				myStmt.setString(2, fs);
+				myStmt.setString(3, ls);
+				myStmt.setString(4, em);
+				myStmt.execute();
+			}
+			
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			finally {
+				close(myConn,myStmt,myRs);
+			}
 		}
 		
-		catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
-		
-		finally {
-			close(myConn,myStmt,myRs);
-		}
 	}
 	
 	public Student fetchStudent(int id)  throws Exception{		
@@ -115,30 +143,36 @@ public class StudentDBUtil {
 				
 		} finally { close(myConn,myStmt,myRs);}
 	}
-	
+
 	public void editStudent(int id, String firstName, String lastName, String email) throws Exception{
 		Connection myConn=null;
-		Statement myStmt = null;
+		PreparedStatement myStmt = null;
 		ResultSet myRs=null;
-		
+				
 		try {
 				myConn= dataSource.getConnection();
-				myStmt = myConn.createStatement();
-				String sql = "update student set firstname="+firstName+", lastname="+lastName+", email="+email+" where id="+id;
-				myRs = myStmt.executeQuery(sql);		
-		} finally { close(myConn,myStmt,myRs);}
+				String sql = "update student set firstname='"+firstName+"', lastname='"+lastName+"', email='"+email+"' where id="+id;
+				myStmt = myConn.prepareStatement(sql);
+				myStmt.execute();		
+		} 
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally { close(myConn,myStmt,myRs);}
 	}
 	
 	public void deleteStudent(int id) throws Exception{
 		Connection myConn=null;
-		Statement myStmt = null;
+		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		
 		try {
 				myConn = dataSource.getConnection();
-				myStmt = myConn.createStatement();
 				String sql = "delete from student where id="+id;
-				myRs = myStmt.executeQuery(sql);
+				myStmt = myConn.prepareStatement(sql);
+				System.out.println(sql);
+				myStmt.execute();
 		}finally {close(myConn,myStmt,myRs);}
 	}
 	
