@@ -171,7 +171,6 @@ public class StudentDBUtil {
 				myConn = dataSource.getConnection();
 				String sql = "delete from student where id="+id;
 				myStmt = myConn.prepareStatement(sql);
-				System.out.println(sql);
 				myStmt.execute();
 		}finally {close(myConn,myStmt,myRs);}
 	}

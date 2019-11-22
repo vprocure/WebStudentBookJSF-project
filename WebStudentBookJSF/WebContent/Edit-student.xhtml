@@ -12,22 +12,34 @@
 			<h2>Edit a student :</h2>
 			<br/>
 			<h:outputText value="Student ID: "/>
-			<h:inputText value = "#{studentManager.disp_stu.id}" binding="#{input1}"/>
+			<h:inputText value = "#{studentManager.disp_stu.id}"/>
 			<br/>
 			<br/>
 			<h:outputText value="Student First Name: "/>
-			<h:inputText value = "#{studentManager.disp_stu.first_Name}" binding="#{input2}" />
+			<h:inputText value = "#{studentManager.disp_stu.first_Name}" id = "FN" validatorMessage=" Please enter a first name">
+				<f:validateRequired for="FN" />	
+			</h:inputText>
+			<h:message for="FN" style="color:red"/>
 			<br/>
 			<br/>
 			<h:outputText value="Student Last Name: "/>
-			<h:inputText value = "#{studentManager.disp_stu.last_Name}" binding="#{input3}" />	
+			<h:inputText value = "#{studentManager.disp_stu.last_Name}" id = "LN" validatorMessage=" Please enter a last name">
+				<f:validateRequired for="LN" />	
+			</h:inputText>
+			<h:message for="LN" style="color:red"/>	
 			<br/>
 			<br/>
 			<h:outputText value="Student Email: "/>
-			<h:inputText value = "#{studentManager.disp_stu.email}" binding="#{input4}"/>	
+			<h:inputText value = "#{studentManager.disp_stu.email}" id = "EM"  validatorMessage=" Please enter a valid email adress (ex: test.test@test.test)">
+				<f:validateRegex for="EM" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</h:inputText>
+			<h:message for="EM" style = "color:red"/>			
 			<br/>
 			<br/>					
 			<h:commandButton value = "Edit" action = "#{studentManager.updateStudent()}"></h:commandButton>
+		</h:form>
+		<br/>
+		<h:form>
 			<h:commandButton value = "Back" action = "List-students"></h:commandButton>
 		</h:form>	
 	</ui:insert>

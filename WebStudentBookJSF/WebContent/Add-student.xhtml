@@ -12,21 +12,33 @@
 			<h2>Fill in the form to add a student :</h2>
 			<br/>
 			<h:outputText value="Student First Name: "/>
-			<h:inputText binding="#{input1}"/>
+			<h:inputText id = "FN" binding="#{input1}" validatorMessage=" Please enter a first name">
+			    <f:validateRequired for="FN"/>	
+			</h:inputText>
+			<h:message for="FN" style="color:red"/>
 			<br/>
 			<br/>
 			<h:outputText value="Student Last Name: "/>
-			<h:inputText binding="#{input2}"/>
+			<h:inputText id = "LN" binding="#{input2}" validatorMessage=" Please enter a last name">
+				<f:validateRequired for="LN" />	
+			</h:inputText>
+			<h:message for="LN" style="color:red"/>
 			<br/>
 			<br/>
 			<h:outputText value="Student Email: "/>
-			<h:inputText binding="#{input3}"/>	
+			<h:inputText id = "EM" binding="#{input3}" validatorMessage=" Please enter a valid email adress (ex: test.test@test.test)">
+				<f:validateRegex for="EM" pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+			</h:inputText>
+			<h:message for="EM" style = "color:red"/>	
 			<br/>
 			<br/>				
-			<h:commandButton value = "Submit" action = "#{studentManager.adding(input1.value,input2.value,input3.value)}"></h:commandButton>
+			<h:commandButton value = "Submit" action = "#{studentManager.adding(input1.value,input2.value,input3.value)}"></h:commandButton>			
+		</h:form>
+		<br/>
+		<h:form>
 			<h:commandButton value = "Back" action = "List-students"></h:commandButton>
+		</h:form>
 			
-		</h:form>	
 	</ui:insert>
 </h:body>
 	
