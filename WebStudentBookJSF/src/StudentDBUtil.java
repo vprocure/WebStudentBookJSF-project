@@ -5,6 +5,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
 
 
 @ManagedBean(name="studentDBUtil")
+@ApplicationScoped
 public class StudentDBUtil {
 
 	private DataSource dataSource;
